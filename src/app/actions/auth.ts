@@ -32,5 +32,11 @@ export async function preAuthCheck(email: string, password: string) {
     };
   }
 
+  // ✅ รีเซ็ต attempts เมื่อ login สำเร็จ
+  await prisma.user.update({
+    where: { id: user.id },
+    data: { loginAttempts: 0, lockUntil: null }
+  });
+
   return { success: true };
 }

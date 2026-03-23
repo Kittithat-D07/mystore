@@ -47,11 +47,9 @@ export default function ProductCard({ p }: { p: Product }) {
         {p.stock>0 && <AddToCartBtn product={p}/>}
       </div>
       <div style={{ paddingInline:2 }}>
-        <p style={{ fontWeight:600, fontSize:14, color:"var(--ink)", marginBottom:4, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{p.name}</p>
-        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-          <p style={{ fontWeight:800, fontSize:20, color:"var(--ink)" }}>฿{p.price.toLocaleString()}</p>
-          <p style={{ fontSize:11, color:"var(--ink-3)", fontFamily:"monospace" }}>{p.sku}</p>
-        </div>
+        <p style={{ fontWeight:600, fontSize:14, color:"var(--ink)", marginBottom:2, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{p.name}</p>
+        <p style={{ fontWeight:800, fontSize:20, color:"var(--ink)", marginBottom:1 }}>฿{p.price.toLocaleString()}</p>
+        <p style={{ fontSize:11, color:"var(--ink-3)", fontFamily:"monospace", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{p.sku}</p>
       </div>
     </Link>
   );
