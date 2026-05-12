@@ -11,6 +11,8 @@ services:
       POSTGRES_DB: shopdb_prod
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432" # เปิดพอร์ตไว้ให้ Prisma Studio เข้าได้
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -24,14 +26,17 @@ services:
     ports:
       - "3000:3000"
     environment:
+      # แก้ไขจาก = เป็น : และจัดย่อหน้าใหม่
       DATABASE_URL: postgresql://postgres:dewza1234@postgres:5432/shopdb_prod?schema=public
       NEXTAUTH_SECRET: my_super_secret_enterprise_key_2026_do_not_share
       NEXTAUTH_URL: http://localhost:3000
+      AUTH_TRUST_HOST: "true"
     depends_on:
       postgres:
         condition: service_healthy
+    # ย้าย command ออกมาอยู่ระดับเดียวกับ environment
     command: >
-      sh -c "npx prisma db push && node server.js"
+      sh -c "npx prisma@6 db push && node server.js"
 
 volumes:
   postgres_data:
