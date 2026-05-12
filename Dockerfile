@@ -46,4 +46,8 @@ ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
 # รันด้วย server.js (standalone output จาก Next.js)
+<<<<<<< HEAD
 CMD ["node", "server.js"]
+=======
+CMD ["node", "server.js"]
+>>>>>>> 5ed122513a400bf9cc16b2900f18fe6f44d069b8
