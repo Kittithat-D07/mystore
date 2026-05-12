@@ -71,6 +71,7 @@ export const resetPasswordSchema = z.object({
 
 // ✅ แก้: รับได้ทั้ง ZodError และ Error ทั่วไป
 export function zodError(error: z.ZodError) {
-  const msg = error.errors?.[0]?.message || "ข้อมูลไม่ถูกต้อง";
+  // ดึงข้อความ error แรกออกมา
+  const msg = error.issues[0]?.message || "ข้อมูลไม่ถูกต้อง";
   return { error: msg, fields: error.flatten().fieldErrors };
 }

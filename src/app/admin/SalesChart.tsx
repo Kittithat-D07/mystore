@@ -47,10 +47,10 @@ export default function SalesChart({ data }: { data: DayData[] }) {
             <YAxis axisLine={false} tickLine={false} tick={{ fill: "#94a3b8", fontSize: 11 }} tickFormatter={(v) => v >= 1000 ? `฿${(v/1000).toFixed(0)}k` : `฿${v}`} width={48} />
             <Tooltip
               contentStyle={{ borderRadius: "12px", border: "none", boxShadow: "0 10px 40px rgba(0,0,0,0.1)", fontSize: 12 }}
-              formatter={(val: number, name: string) => [
-                name === "revenue" ? `฿${val.toLocaleString()}` : `${val} orders`,
-                name === "revenue" ? "รายได้" : "คำสั่งซื้อ",
-              ]}
+              formatter={(val, name) => [
+  name === "revenue" ? `฿${Number(val).toLocaleString()}` : `${val} orders`,
+  name === "revenue" ? "รายได้" : "คำสั่งซื้อ",
+]}
             />
             <Area type="monotone" dataKey="revenue" stroke="#0d9488" strokeWidth={2.5} fillOpacity={1} fill="url(#revenueGrad)" dot={{ fill: "#0d9488", r: 3 }} activeDot={{ r: 5 }} />
           </AreaChart>
